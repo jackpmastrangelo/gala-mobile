@@ -1,14 +1,15 @@
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { Provider } from 'react-redux';
+import { galaStore } from "./src/state/galaStore";
+import StartupNavigator from './src/navigators/StartupNavigator';
 
 export default class App extends React.Component {
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.mainText}>Open up App.js to start working on your app!</Text>
-        <Text style={styles.mainText}>Changes you make will automatically reload.</Text>
-        <Text style={styles.mainText}>Shake your phone to open the developer menu.</Text>
-      </View>
+      <Provider store={galaStore}>
+        <StartupNavigator />
+      </Provider>
     );
   }
 }
