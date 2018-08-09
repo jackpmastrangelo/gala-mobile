@@ -14,30 +14,30 @@ class CreateAccountScreen extends React.Component {
     }
   }
 
-  handleFieldChange(newValue, field) {
+  handleFieldChange = (newValue, field) => {
     let change = {};
     change[field] = newValue;
     this.setState(change);
-  }
+  };
 
-  handleCreateAccount() {
+  handleCreateAccount = () => {
     this.props.dispatch(createAccount(
       this.state.firstNameField,
       this.state.lastNameField,
       this.state.emailField,
       this.state.passwordField
     ));
-  }
+  };
 
   render() {
-    let extraInformation = undefined;
+    let accountCreationStatus = undefined;
 
     if (this.props.fetching) {
-      extraInformation = <Text>Hold on, creating account...</Text>;
+        accountCreationStatus = <Text>Hold on, creating account...</Text>;
     } else if (this.props.error) {
-      extraInformation = <Text>{this.props.errorMessage}</Text>;
+        accountCreationStatus = <Text>{this.props.errorMessage}</Text>;
     } else if (this.props.success) {
-      extraInformation = <Text>Success!</Text>
+        accountCreationStatus = <Text>Success!</Text>
     }
 
     return(
@@ -45,29 +45,25 @@ class CreateAccountScreen extends React.Component {
         <View style={{flex: .1}}/>
         <View style={{flex: .8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
           <Text>Welcome to Gala! {"\n"}Enter your info to create an account.</Text>
-          <Text>First Name: </Text>
           <TextInput value={this.state.firstNameField}
                      style={{height: 30, width: 100}}
                      placeholder={"First Name"}
-                     onChangeText={newText => { this.handleFieldChange.bind(this)(newText, "firstNameField") }} />
-          <Text>Last Name: </Text>
+                     onChangeText={newFirstName => { this.handleFieldChange(newFirstName, "firstNameField") }} />
           <TextInput value={this.state.lastNameField}
                      style={{height: 30, width: 100}}
                      placeholder={"Last Name"}
-                     onChangeText={newText => { this.handleFieldChange.bind(this)(newText, "lastNameField") }} />
-          <Text>Email: </Text>
+                     onChangeText={newLastName => { this.handleFieldChange(newLastName, "lastNameField") }} />
           <TextInput value={this.state.emailField}
                      style={{height: 30, width: 100}}
                      placeholder={"Email"}
-                     onChangeText={newText => { this.handleFieldChange.bind(this)(newText, "emailField") }} />
-          <Text>Password: </Text>
+                     onChangeText={newEmail => { this.handleFieldChange(newEmail, "emailField") }} />
           <TextInput value={this.state.passwordField}
                      style={{height: 30, width: 100}}
                      placeholder={"Password"}
-                     onChangeText={newText => { this.handleFieldChange.bind(this)(newText, "passwordField") }} />
+                     onChangeText={newPassword => { this.handleFieldChange(newPassword, "passwordField") }} />
           <Button title={"Create account!"}
-                  onPress={() => { this.handleCreateAccount.bind(this)() }}/>
-          {extraInformation}
+                  onPress={this.handleCreateAccount}/>
+          {accountCreationStatus}
         </View>
         <View style={{flex: .1}}/>
       </View>

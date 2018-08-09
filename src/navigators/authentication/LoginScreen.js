@@ -12,19 +12,20 @@ class LoginScreen extends React.Component {
     }
   }
 
-  handleFieldChange(newValue, field) {
+  handleFieldChange = (newValue, field) => {
     let change = {};
     change[field] = newValue;
     this.setState(change);
-  }
+  };
 
-  handleLogin() {
+  handleLogin = () => {
     this.props.dispatch(login(this.state.usernameField, this.state.passwordField));
-  }
+  };
 
-  navigateToCreateAccount() {
+  navigateToCreateAccount = () => {
     this.props.navigation.navigate("CreateAccount");
-  }
+  };
+
 
   componentDidUpdate() {
     if (this.props.loginSuccessful) {
@@ -33,14 +34,14 @@ class LoginScreen extends React.Component {
   }
 
   render() {
-    let extraInformation = undefined;
 
+    let loginStatus = undefined;
     if (this.props.loginFetching) {
-      extraInformation = <Text>Login Fetching</Text>;
+        loginStatus = <Text>Login Fetching</Text>;
     } else if (this.props.loginError) {
-      extraInformation = <Text>{this.props.loginErrorMessage}</Text>;
+        loginStatus = <Text>{this.props.loginErrorMessage}</Text>;
     } else if (this.props.loginSuccessful) {
-      extraInformation = <Text>Success!</Text>
+        loginStatus = <Text>Success!</Text>
     }
 
     return(
@@ -48,20 +49,20 @@ class LoginScreen extends React.Component {
         <View style={{flex: 8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
           <Text>Welcome to Gala! Please login:</Text>
           <TextInput value={this.state.usernameField}
-                     style={{height: 30, width: 100}}
+                     style={{height: 30, width: '80%'}}
                      placeholder={"Username"}
-                     onChangeText={newText => { this.handleFieldChange.bind(this)(newText, "usernameField") }} />
+                     onChangeText={newUsername => { this.handleFieldChange(newUsername, "usernameField") }} />
           <TextInput value={this.state.passwordField}
-                     style={{height: 30, width: 100}}
+                     style={{height: 30, width: '80%'}}
                      placeholder={"Password"}
-                     onChangeText={newText => { this.handleFieldChange.bind(this)(newText, "passwordField") }} />
+                     onChangeText={newPassword => { this.handleFieldChange(newPassword, "passwordField") }} />
           <Button title={"Login"}
-                  onPress={() => { this.handleLogin.bind(this)() }}/>
-        {extraInformation}
+                  onPress={this.handleLogin}/>
+        {loginStatus}
         </View>
         <View style={{flex: 2, alignItems: "center"}}>
           <Button title={"Don't have an account? Create one!"}
-                  onPress={() => { this.navigateToCreateAccount.bind(this)() }}/>
+                  onPress={this.navigateToCreateAccount}/>
         </View>
       </View>
     );
