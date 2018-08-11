@@ -1,5 +1,5 @@
-import AccountApi from "../api/gala/AccountApi";
-import Session from "./Session";
+import AccountApi from "../../api/gala/AccountApi";
+import { Session, credentialsFound } from "../Session";
 
 //Action Types
 const LOGIN_REQUEST = "LOGIN_REQUEST",
@@ -44,6 +44,7 @@ export function login(email, password) {
 
     AccountApi.login(email, password)
       .then(response => {
+        dispatch(credentialsFound(response.data));
         dispatch(loginSuccessful(response.data));
       })
       .catch(error => {

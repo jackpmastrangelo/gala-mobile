@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { login } from "../../state/loginState";
+import { login } from "../../state/api/loginState";
 
 class LoginScreen extends React.Component {
   constructor(props) {

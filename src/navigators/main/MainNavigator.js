@@ -1,10 +1,10 @@
-import { createBottomTabNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 import EventsDashboard from './EventsDashboard';
 
-export default createBottomTabNavigator(
+export default createStackNavigator(
   {
-    EventsDashboard: EventsDashboard
+    Events: EventsDashboard
   },
   {
-    initialRouteName: "EventsDashboard"
+    initialRouteName: "Events"
   })

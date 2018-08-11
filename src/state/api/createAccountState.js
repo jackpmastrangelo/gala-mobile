@@ -1,4 +1,4 @@
-import AccountApi from '../api/gala/AccountApi';
+import AccountApi from '../../api/gala/AccountApi';
 import { newLogin } from "./loginState";
 
 //Action Types

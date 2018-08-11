@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
-import { createAccount } from "../../state/createAccountState";
+import { createAccount } from "../../state/api/createAccountState";
 
 class CreateAccountScreen extends React.Component {
   constructor(props) {
