@@ -1,17 +1,18 @@
 import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
 
 export default class EventTile extends React.Component {
+
   render() {
     const event = this.props.event;
 
     return (
-      <View style={styles.tile}>
+      <TouchableOpacity style={styles.tile}  onPress={() => this.props.onEventPress(event)}>
         <View style={styles.flexContainer}>
           <Text>{event.name}</Text>
           <Text>{event.eventTime}</Text>
         </View>
-      </View>
+      </TouchableOpacity>
     );
   }
 }

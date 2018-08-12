@@ -7,7 +7,9 @@ export default class EventsList extends React.Component {
     let eventTiles = [];
 
     this.props.events.forEach((event, ind) => {
-      eventTiles.push(<EventTile event={event} key={ind}/>)
+      eventTiles.push(<EventTile event={event}
+                                 key={ind}
+                                 onEventPress={this.props.onEventPress}/>)
     });
 
     return (
