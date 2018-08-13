@@ -12,7 +12,7 @@ const initialState = {
   error: false,
   errorMessage: "",
   events: []
-}
+};
 
 export function fetchEventsReducer(state = initialState, action) {
 
