@@ -9,8 +9,8 @@ export default class EventTile extends React.Component {
     return (
       <TouchableOpacity style={styles.tile}  onPress={() => this.props.onEventPress(event)}>
         <View style={styles.flexContainer}>
-          <Text>{event.name}</Text>
-          <Text>{event.eventTime}</Text>
+          <Text style={styles.tileText}>{event.name}</Text>
+          <Text style={styles.tileText}>{event.place}</Text>
         </View>
       </TouchableOpacity>
     );
@@ -21,7 +21,13 @@ const styles = StyleSheet.create({
   tile: {
     height: 100,
     width: 350,
-    backgroundColor: '#2d2d2d'
+    backgroundColor: '#e91e63',
+    padding: 16,
+    borderBottomColor: '#ffffff',
+    borderBottomWidth: 2
+  },
+  tileText: {
+    color: '#ffffff'
   },
   flexContainer: {
     flex: 1,

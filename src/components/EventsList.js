@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View, StyleSheet } from 'react-native';
+import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
 import EventTile from './EventTile';
 
 export default class EventsList extends React.Component {
@@ -12,10 +12,18 @@ export default class EventsList extends React.Component {
                                  onEventPress={this.props.onEventPress}/>)
     });
 
+    eventTiles.push(
+      <TouchableOpacity onPress={() => { this.props.refreshFunction() }}
+                        style={{flex: 1, justifyContent:'center', alignItems: 'center'}}
+                        key={eventTiles.length}>
+        <View style={{height: 100}}><Text>Refresh</Text></View>
+      </TouchableOpacity>
+    );
+
     return (
-      <View style={styles.tiles}>
+      <ScrollView>
         {eventTiles}
-      </View>
+      </ScrollView>
     );
   }
 }

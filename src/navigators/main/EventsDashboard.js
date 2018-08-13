@@ -11,8 +11,13 @@ class EventsDashboard extends React.Component {
   }
 
   //TODO thought that I'd have to pass a callback from a component that has navigation. Check this
+  //TODO Pretty sure you can also pass the navigation down the chain, not sure which is preferable.
   pushTicketScanner = event => {
         this.props.navigation.push("TicketScanner", {event: event});
+  };
+
+  refreshEvents = () => {
+    this.props.dispatch(fetchEvents(this.props.authToken));
   };
 
   render() {
@@ -21,7 +26,7 @@ class EventsDashboard extends React.Component {
     if (this.props.eventsFetching) {
       innerContent = <Text> Events are fetching... </Text>
     } else if (this.props.events) {
-      innerContent = <EventsList events={this.props.events} onEventPress={this.pushTicketScanner}/>
+      innerContent = <EventsList events={this.props.events} refreshFunction={this.refreshEvents} onEventPress={this.pushTicketScanner}/>
     }
 
     return (

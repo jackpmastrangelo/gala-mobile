@@ -5,6 +5,7 @@ import { loginReducer } from "./api/loginState";
 import { createAccountReducer } from "./api/createAccountState";
 import { sessionReducer } from "./Session";
 import { fetchEventsReducer } from "./api/fetchEventsState";
+import { validateTicketReducer } from "./api/validateTicketState";
 
 //This is a special action for global state reset, used upon user logout.
 const GLOBAL_STATE_RESET = "GLOBAL_STATE_RESET";
@@ -19,7 +20,8 @@ const appReducer = combineReducers({
   sessionState: sessionReducer,
   loginState: loginReducer,
   createAccountState: createAccountReducer,
-  fetchEventsState: fetchEventsReducer
+  fetchEventsState: fetchEventsReducer,
+  validateTicketState: validateTicketReducer
 });
 
 const rootReducer = (state, action) => {
