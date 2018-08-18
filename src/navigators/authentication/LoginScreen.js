@@ -1,12 +1,7 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { login } from "../../state/api/loginState";
-
-const LOGIN_SCREEN_FORM_STYLE = {
-  height: 50,
-  width: '80%'
-};
 
 class LoginScreen extends React.Component {
   constructor(props) {
@@ -31,6 +26,18 @@ class LoginScreen extends React.Component {
     this.props.navigation.navigate("CreateAccount");
   };
 
+  fetchLoginStatus() {
+      if (this.props.loginFetching) {
+          return <Text>Login Fetching</Text>;
+      } else if (this.props.loginError) {
+          return <Text>{this.props.loginErrorMessage}</Text>;
+      } else if (this.props.loginSuccessful) {
+          return <Text>Success!</Text>;
+      }
+
+      return undefined;
+  }
+
 
   componentDidUpdate() {
     if (this.props.loginSuccessful) {
@@ -39,31 +46,23 @@ class LoginScreen extends React.Component {
   }
 
   render() {
-
-    let loginStatus = undefined;
-    if (this.props.loginFetching) {
-        loginStatus = <Text>Login Fetching</Text>;
-    } else if (this.props.loginError) {
-        loginStatus = <Text>{this.props.loginErrorMessage}</Text>;
-    } else if (this.props.loginSuccessful) {
-        loginStatus = <Text>Success!</Text>
-    }
-
     return(
       <View style={{flex: 1, justifyContent: "center", alignItems: "center"}}>
         <View style={{flex: 8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
+
           <Text>Welcome to Gala! Please login:</Text>
           <TextInput value={this.state.usernameField}
-                     style={LOGIN_SCREEN_FORM_STYLE}
+                     style={styles.formTextInput}
                      placeholder={"Username"}
                      onChangeText={newUsername => { this.handleFieldChange(newUsername, "usernameField") }} />
           <TextInput value={this.state.passwordField}
-                     style={LOGIN_SCREEN_FORM_STYLE}
+                     style={styles.formTextInput}
                      placeholder={"Password"}
                      onChangeText={newPassword => { this.handleFieldChange(newPassword, "passwordField") }} />
           <Button title={"Login"}
                   onPress={this.handleLogin}/>
-        {loginStatus}
+        {this.fetchLoginStatus()}
+
         </View>
         <View style={{flex: 2, alignItems: "center"}}>
           <Button title={"Don't have an account? Create one!"}
@@ -73,6 +72,13 @@ class LoginScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+    formTextInput: {
+        height: 50,
+        width: '80%'
+    }
+});
 
 function mapStateToProps(state) {
   return {
