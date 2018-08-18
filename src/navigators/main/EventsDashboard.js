@@ -21,17 +21,11 @@ class EventsDashboard extends React.Component {
   };
 
   render() {
-    let innerContent = <Text> Events should load here. </Text>;
-
-    if (this.props.eventsFetching) {
-      innerContent = <Text> Events are fetching... </Text>
-    } else if (this.props.events) {
-      innerContent = <EventsList events={this.props.events} refreshFunction={this.refreshEvents} onEventPress={this.pushTicketScanner}/>
-    }
-
     return (
       <View style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        { innerContent }
+        <EventsList events={this.props.events}
+                    refreshEvents={this.refreshEvents}
+                    onEventPress={this.pushTicketScanner}/>
       </View>
     );
   }

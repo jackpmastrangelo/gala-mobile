@@ -1,37 +1,41 @@
 import React from 'react';
-import { Text, View, StyleSheet, ScrollView, TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native';
 import EventTile from './EventTile';
+import EmptyEventsList from './EmptyEventsList';
 
 export default class EventsList extends React.Component {
-  render() {
-    let eventTiles = [];
+  constructor(props) {
+    super(props);
 
-    this.props.events.forEach((event, ind) => {
-      eventTiles.push(<EventTile event={event}
-                                 key={ind}
-                                 onEventPress={this.props.onEventPress}/>)
-    });
+    this.state = {
+      refreshing: false
+    }
+  }
 
-    eventTiles.push(
-      <TouchableOpacity onPress={() => { this.props.refreshFunction() }}
-                        style={{flex: 1, justifyContent:'center', alignItems: 'center'}}
-                        key={eventTiles.length}>
-        <View style={{height: 100}}><Text>Refresh</Text></View>
-      </TouchableOpacity>
-    );
+  componentDidUpdate() {
+    if (this.state.refreshing) {
+        this.setState({refreshing: false});
+    }
+  }
 
+  renderEventItem = ({item}) => {
     return (
-      <ScrollView>
-        {eventTiles}
-      </ScrollView>
+        <EventTile event={item} key={item.eventId} onEventPress={this.props.onEventPress}/>
     );
+  };
+
+  onRefresh = () => {
+    this.setState({refreshing: true});
+    this.props.refreshEvents();
+  };
+
+  render() {
+    return (
+        <FlatList data={this.props.events}
+                  renderItem={this.renderEventItem}
+                  refreshing={this.state.refreshing}
+                  onRefresh={this.onRefresh}
+                  ListEmptyComponent={<EmptyEventsList />}/>
+    )
   }
 }
-
-const styles = StyleSheet.create({
-  tiles: {
-    flex: 1,
-    justifyContent: 'flex-start',
-    alignItems: 'center'
-  }
-});

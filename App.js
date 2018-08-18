@@ -3,9 +3,12 @@ import { StyleSheet, Text, View } from 'react-native';
 import { Provider } from 'react-redux';
 import { galaStore } from "./src/state/galaStore";
 import StartupNavigator from './src/navigators/StartupNavigator';
+import { AsyncStorage } from 'react-native';
 
 export default class App extends React.Component {
   render() {
+    AsyncStorage.clear();
+
     return (
       <Provider store={galaStore}>
         <StartupNavigator />

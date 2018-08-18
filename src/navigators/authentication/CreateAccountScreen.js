@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
 import { connect } from 'react-redux';
 import { createAccount } from "../../state/api/createAccountState";
 
@@ -46,19 +46,19 @@ class CreateAccountScreen extends React.Component {
         <View style={{flex: .8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
           <Text>Welcome to Gala! {"\n"}Enter your info to create an account.</Text>
           <TextInput value={this.state.firstNameField}
-                     style={{height: 30, width: 100}}
+                     style={styles.formTextInput}
                      placeholder={"First Name"}
                      onChangeText={newFirstName => { this.handleFieldChange(newFirstName, "firstNameField") }} />
           <TextInput value={this.state.lastNameField}
-                     style={{height: 30, width: 100}}
+                     style={styles.formTextInput}
                      placeholder={"Last Name"}
                      onChangeText={newLastName => { this.handleFieldChange(newLastName, "lastNameField") }} />
           <TextInput value={this.state.emailField}
-                     style={{height: 30, width: 100}}
+                     style={styles.formTextInput}
                      placeholder={"Email"}
                      onChangeText={newEmail => { this.handleFieldChange(newEmail, "emailField") }} />
           <TextInput value={this.state.passwordField}
-                     style={{height: 30, width: 100}}
+                     style={styles.formTextInput}
                      placeholder={"Password"}
                      onChangeText={newPassword => { this.handleFieldChange(newPassword, "passwordField") }} />
           <Button title={"Create account!"}
@@ -70,6 +70,13 @@ class CreateAccountScreen extends React.Component {
     );
   }
 }
+
+const styles = StyleSheet.create({
+    formTextInput: {
+      height: 50,
+      width: '80%'
+    }
+});
 
 function mapStateToProps(state) {
   return {

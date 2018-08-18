@@ -5,7 +5,7 @@ import TicketScanner from './TicketScanner';
 export default createStackNavigator(
   {
     Events: EventsDashboard,
-      TicketScanner: TicketScanner
+    TicketScanner: TicketScanner
   },
   {
     initialRouteName: "Events"

@@ -74,7 +74,7 @@ class TicketScanner extends React.Component {
   }
 
   handleQrCodeRead = (event) => {
-    return ({type, data}) => {
+    return ({data}) => {
       if (this.state.active) {
         this.setState({ active: false, alerted: false });
         this.props.dispatch(validateTicket(event.id, data, this.props.authToken));

@@ -3,6 +3,11 @@ import { View, Text, TextInput, Button } from 'react-native';
 import { connect } from 'react-redux';
 import { login } from "../../state/api/loginState";
 
+const LOGIN_SCREEN_FORM_STYLE = {
+  height: 50,
+  width: '80%'
+};
+
 class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
@@ -49,11 +54,11 @@ class LoginScreen extends React.Component {
         <View style={{flex: 8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
           <Text>Welcome to Gala! Please login:</Text>
           <TextInput value={this.state.usernameField}
-                     style={{height: 30, width: '80%'}}
+                     style={LOGIN_SCREEN_FORM_STYLE}
                      placeholder={"Username"}
                      onChangeText={newUsername => { this.handleFieldChange(newUsername, "usernameField") }} />
           <TextInput value={this.state.passwordField}
-                     style={{height: 30, width: '80%'}}
+                     style={LOGIN_SCREEN_FORM_STYLE}
                      placeholder={"Password"}
                      onChangeText={newPassword => { this.handleFieldChange(newPassword, "passwordField") }} />
           <Button title={"Login"}
