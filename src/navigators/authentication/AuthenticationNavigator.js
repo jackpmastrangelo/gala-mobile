@@ -5,11 +5,10 @@ import AuthLoadingScreen from "./AuthLoadingScreen";
 
 export default createStackNavigator(
   {
-    AuthLoading: AuthLoadingScreen,
     Login: LoginScreen,
     CreateAccount: CreateAccountScreen
   },
   {
-    initialRouteName: "AuthLoading"
+    initialRouteName: "Login"
   }
-)
+);

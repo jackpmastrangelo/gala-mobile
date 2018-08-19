@@ -1,9 +1,13 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, KeyboardAvoidingView } from 'react-native';
 import { connect } from 'react-redux';
 import { createAccount } from "../../state/api/createAccountState";
 
 class CreateAccountScreen extends React.Component {
+  static navigationOptions = {
+    title: "Join Us..."
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -43,7 +47,7 @@ class CreateAccountScreen extends React.Component {
 
   render() {
     return(
-      <View style={{flex: 1, flexDirection: 'row'}}>
+      <KeyboardAvoidingView style={{flex: 1, flexDirection: 'row'}}>
         <View style={{flex: .1}}/>
         <View style={{flex: .8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
 
@@ -70,7 +74,7 @@ class CreateAccountScreen extends React.Component {
 
         </View>
         <View style={{flex: .1}}/>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }

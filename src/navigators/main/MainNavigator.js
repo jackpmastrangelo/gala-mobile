@@ -8,5 +8,6 @@ export default createStackNavigator(
     TicketScanner: TicketScanner
   },
   {
+    mode: 'modal',
     initialRouteName: "Events"
   })
