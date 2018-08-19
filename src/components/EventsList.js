@@ -32,6 +32,7 @@ export default class EventsList extends React.Component {
   render() {
     return (
         <FlatList data={this.props.events}
+                  keyExtractor={item => item.id}
                   renderItem={this.renderEventItem}
                   refreshing={this.state.refreshing}
                   onRefresh={this.onRefresh}
