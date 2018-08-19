@@ -5,6 +5,10 @@ import { fetchEvents } from "../../state/api/fetchEventsState";
 import EventsList from '../../components/EventsList';
 
 class EventsDashboard extends React.Component {
+  static navigationOptions = {
+    title: "My Events"
+  };
+
   constructor(props) {
     super(props);
     props.dispatch(fetchEvents(props.authToken));
