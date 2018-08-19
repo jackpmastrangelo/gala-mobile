@@ -57,10 +57,13 @@ class LoginScreen extends React.Component {
           <Text>Welcome to Gala! Please login:</Text>
           <TextInput value={this.state.usernameField}
                      style={styles.formTextInput}
+                     autoCapitalize={'none'}
                      placeholder={"Username"}
                      onChangeText={newUsername => { this.handleFieldChange(newUsername, "usernameField") }} />
           <TextInput value={this.state.passwordField}
                      style={styles.formTextInput}
+                     autoCapitalize={'none'}
+                     secureTextEntry={true}
                      placeholder={"Password"}
                      onChangeText={newPassword => { this.handleFieldChange(newPassword, "passwordField") }} />
           <Button title={"Login"}

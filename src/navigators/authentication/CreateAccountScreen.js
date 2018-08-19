@@ -49,23 +49,28 @@ class CreateAccountScreen extends React.Component {
     return(
       <KeyboardAvoidingView style={{flex: 1, flexDirection: 'row'}}>
         <View style={{flex: .1}}/>
-        <View style={{flex: .8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
+        <View style={{flex: .8, flexDirection: "column", justifyContent: 'center', alignItems: "flex-start"}}>
 
           <Text>Welcome to Gala! {"\n"}Enter your info to create an account.</Text>
           <TextInput value={this.state.firstNameField}
                      style={styles.formTextInput}
+                     autoCapitalize={'none'}
                      placeholder={"First Name"}
                      onChangeText={newFirstName => { this.handleFieldChange(newFirstName, "firstNameField") }} />
           <TextInput value={this.state.lastNameField}
                      style={styles.formTextInput}
+                     autoCapitalize={'none'}
                      placeholder={"Last Name"}
                      onChangeText={newLastName => { this.handleFieldChange(newLastName, "lastNameField") }} />
           <TextInput value={this.state.emailField}
                      style={styles.formTextInput}
+                     autoCapitalize={'none'}
                      placeholder={"Email"}
                      onChangeText={newEmail => { this.handleFieldChange(newEmail, "emailField") }} />
           <TextInput value={this.state.passwordField}
                      style={styles.formTextInput}
+                     autoCapitalize={'none'}
+                     secureTextEntry={true}
                      placeholder={"Password"}
                      onChangeText={newPassword => { this.handleFieldChange(newPassword, "passwordField") }} />
           <Button title={"Create account!"}
