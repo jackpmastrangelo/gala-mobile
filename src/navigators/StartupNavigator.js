@@ -1,5 +1,5 @@
 import { createSwitchNavigator } from 'react-navigation';
-import AuthLoadingScreen from './authentication/AuthLoadingScreen';
+import AuthLoadingScreen from './AuthLoadingScreen';
 import AuthenticationNavigator from './authentication/AuthenticationNavigator';
 import MainNavigator from './main/MainNavigator';
 

@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View, Text, StyleSheet, ActivityIndicator } from 'react-native';
-import { fetchSessionFromStorage } from "../../state/Session";
+import { View, StyleSheet, ActivityIndicator } from 'react-native';
+import { fetchSessionFromStorage } from "../state/Session";
 
 class AuthLoadingScreen extends React.Component {
   constructor(props) {

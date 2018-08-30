@@ -38,8 +38,6 @@ class LoginScreen extends React.Component {
       } else if (this.props.loginSuccessful) {
           return <Text>Success!</Text>;
       }
-
-      return undefined;
   }
 
 

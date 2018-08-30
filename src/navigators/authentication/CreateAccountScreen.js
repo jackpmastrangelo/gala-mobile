@@ -45,6 +45,7 @@ class CreateAccountScreen extends React.Component {
       return undefined;
   }
 
+  //TODO: I don't think this keyboard avoiding works...
   render() {
     return(
       <KeyboardAvoidingView style={{flex: 1, flexDirection: 'row'}}>

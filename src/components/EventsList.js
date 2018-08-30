@@ -20,7 +20,7 @@ export default class EventsList extends React.Component {
 
   renderEventItem = ({item}) => {
     return (
-        <EventTile event={item} key={item.eventId} onEventPress={this.props.onEventPress}/>
+        <EventTile event={item} key={item.id} onEventPress={this.props.onEventPress}/>
     );
   };
 

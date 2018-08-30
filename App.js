@@ -7,6 +7,8 @@ import { AsyncStorage } from 'react-native';
 
 export default class App extends React.Component {
   render() {
+    //TODO: Make sure to remove this
+    //This is a dev workaround for getting over the token expiration bug
     AsyncStorage.clear();
 
     return (
