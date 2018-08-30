@@ -30,10 +30,10 @@ export function validateTicketReducer(state = initState, action) {
 }
 
 //Action Creators
-export function validateTicket(eventId, ticketId, authtoken) {
+export function validateTicket(eventId, ticketId, authToken) {
   return function(dispatch) {
     dispatch(validateTicketBegun());
-    TicketApi.validateTicket(eventId, ticketId, authtoken)
+    TicketApi.validateTicket(eventId, ticketId, authToken)
       .then(response => {
         dispatch(validateTicketSuccessful());
         console.log("Success");

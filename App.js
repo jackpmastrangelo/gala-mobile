@@ -18,15 +18,3 @@ export default class App extends React.Component {
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#4A1213',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  mainText: {
-    color: '#FFEEA5'
-  }
-});
