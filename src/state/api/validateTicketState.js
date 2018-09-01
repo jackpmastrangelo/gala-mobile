@@ -36,13 +36,24 @@ export function validateTicket(eventId, ticketId, authToken) {
     TicketApi.validateTicket(eventId, ticketId, authToken)
       .then(response => {
         dispatch(validateTicketSuccessful());
-        console.log("Success");
       })
       .catch(error => {
         //TODO differentiate based on different errors.
-        dispatch(validateTicketError("There was an error validating your ticket"));
-        console.log(JSON.stringify(error));
+        dispatch(validateTicketError(interpretError(error.response)));
       });
+  }
+}
+
+function interpretError(response) {
+  switch (response.status) {
+    case 406:
+      return "This ticket has already been validated!";
+    case 409:
+      return "This ticket is for a different event";
+    case 404:
+      return "Looks like this isn't a Gala ticket. Hmmm";
+    default:
+      return "Uh oh. Something went wrong. Please try again and let us know!";
   }
 }
 

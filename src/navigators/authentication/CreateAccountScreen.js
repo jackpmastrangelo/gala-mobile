@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, KeyboardAvoidingView, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { createAccount } from "../../state/api/createAccountState";
 
@@ -25,12 +25,16 @@ class CreateAccountScreen extends React.Component {
   };
 
   handleCreateAccount = () => {
-    this.props.dispatch(createAccount(
-      this.state.firstNameField,
-      this.state.lastNameField,
-      this.state.emailField,
-      this.state.passwordField
-    ));
+    let firstName = this.state.firstNameField,
+        lastName = this.state.lastNameField,
+        email = this.state.emailField,
+        password = this.state.passwordField;
+
+    if (firstName && lastName && email && password) {
+      this.props.dispatch(createAccount(firstName, lastName, email, password));
+    } else {
+      Alert.alert("Incomplete info", "Please fill out all fields!")
+    }
   };
 
   fetchAccountCreationStatus() {

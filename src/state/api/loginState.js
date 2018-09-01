@@ -48,8 +48,17 @@ export function login(email, password) {
         dispatch(loginSuccessful(response.data));
       })
       .catch(error => {
-        dispatch(loginError("Login was unsuccessful"));
+        dispatch(loginError(interpretError(error.response)));
       })
+  }
+}
+
+function interpretError(response) {
+  switch (response.status) {
+    case 400:
+      return "The email or password you entered is incorrect. Please try again!";
+    default:
+      return "Uh oh. Something went wrong. Please try again and let us know!";
   }
 }
 

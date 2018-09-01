@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, TextInput, Button, StyleSheet, KeyboardAvoidingView } from 'react-native';
+import { View, Text, TextInput, Button, StyleSheet, KeyboardAvoidingView, Alert } from 'react-native';
 import { connect } from 'react-redux';
 import { login } from "../../state/api/loginState";
 
@@ -11,7 +11,7 @@ class LoginScreen extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      usernameField: "",
+      emailField: "",
       passwordField: ""
     }
   }
@@ -23,7 +23,13 @@ class LoginScreen extends React.Component {
   };
 
   handleLogin = () => {
-    this.props.dispatch(login(this.state.usernameField, this.state.passwordField));
+    let email = this.state.emailField;
+    let password = this.state.passwordField;
+    if (email && password) {
+      this.props.dispatch(login(this.state.emailField, this.state.passwordField));
+    } else {
+      Alert.alert("Incomplete info", "Please fill out both the email and password fields!")
+    }
   };
 
   navigateToCreateAccount = () => {
@@ -53,11 +59,11 @@ class LoginScreen extends React.Component {
         <View style={{flex: 8, flexDirection: "column", justifyContent: "center", alignItems: "flex-start"}}>
 
           <Text>Welcome to Gala! Please login:</Text>
-          <TextInput value={this.state.usernameField}
+          <TextInput value={this.state.emailField}
                      style={styles.formTextInput}
                      autoCapitalize={'none'}
-                     placeholder={"Username"}
-                     onChangeText={newUsername => { this.handleFieldChange(newUsername, "usernameField") }} />
+                     placeholder={"Email"}
+                     onChangeText={newEmail => { this.handleFieldChange(newEmail, "emailField") }} />
           <TextInput value={this.state.passwordField}
                      style={styles.formTextInput}
                      autoCapitalize={'none'}

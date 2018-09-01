@@ -39,8 +39,19 @@ export function createAccount(firstName, lastName, email, password) {
         dispatch(createAccountSuccess());
       })
       .catch(error => {
-        dispatch(createAccountError("There was an error making your account."));
+        dispatch(createAccountError(interpretError(error.response)));
       })
+  }
+}
+
+function interpretError(response) {
+  switch (response.status) {
+    case 409:
+      return "That email is already in use. Try logging in!";
+    case 400:
+      return "The email you've entered is invalid :(";
+    default:
+      return "Uh oh. Something went wrong. Please try again and let us know!";
   }
 }
 

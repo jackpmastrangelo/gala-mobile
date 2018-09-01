@@ -45,32 +45,26 @@ class TicketScanner extends React.Component {
   componentDidUpdate() {
     if (!this.state.alerted && (this.props.success || this.props.validationError)) {
       this.setState({alerted: true});
+
       if (this.props.success) {
-        Alert.alert("Success",
-          "Ticket successfully validated!",
-          [
-            {
-              text: 'Ok', onPress: () => {
-                this.props.dispatch(validateTicketReset());
-                this.setState({ active: true, alerted: false });
-              }
-            }
-          ],
-          {cancelable: false});
+        this.ticketValidationAlert("Success", "Ticket successfully validated!");
       } else if (this.props.validationError) {
-        Alert.alert("Error",
-          "There was an error validating your ticket",
-          [
-            {
-              text: 'Ok', onPress: () => {
-                this.props.dispatch(validateTicketReset());
-                this.setState({ active: true, alerted: false });
-              }
-            }
-          ],
-          {cancelable: false})
+        this.ticketValidationAlert("Error", this.props.validationErrorMessage);
       }
     }
+  }
+
+  ticketValidationAlert(title, body) {
+    Alert.alert(title, body,
+      [
+        {
+          text: 'Ok', onPress: () => {
+            this.props.dispatch(validateTicketReset());
+            this.setState({ active: true, alerted: false });
+          }
+        }
+      ],
+      {cancelable: false});
   }
 
   handleQrCodeRead = (event) => {
